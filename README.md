@@ -44,3 +44,9 @@ Keep stable record IDs. Create `records`, `relationships` and `activity` tables 
 Authentication/permissions, collaborative persistence, verified users, evidence uploads, record editing/merging/deleting, imports, monetary accounting, strategy response-rate reporting, validated playbook promotion, semantic search, interactive graph canvas, integrations and notifications. Contributor is manually stated in this unauthenticated prototype; it is not an audited identity. Evidence supports notes and URL references, not uploaded screenshots/datasets.
 
 Do not deploy this unauthenticated prototype with sensitive company information. Robots metadata discourages indexing but provides no access control.
+
+## Brand and motion
+
+Original symbol downloaded from https://www.ifagrithm.xyz/assets/brand-symbol-transparent.png, stored locally in `public/brand-symbol-transparent.png`. The live public website informed the warm-white palette, dot grid, gold accents, floating symbol and moving evidence trail. The website itself is unchanged.
+
+Light/dark toggle and pause/play controls persist in browser preferences. CSS honours prefers-reduced-motion. `memory-motion.tsx` displays clickable connected demonstration records; it is an illustrative operating sequence, while record detail edges preserve exact relationship labels. No animation libraries added.

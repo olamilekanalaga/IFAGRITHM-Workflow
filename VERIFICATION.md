@@ -15,3 +15,15 @@
 - Accessibility basics: semantic navigation and headings, labelled input controls, visible focus styling, native dialog and keyboard-operable buttons/selects. No formal WCAG audit.
 
 Limitations: no multiuser database, no auth, no upload handling, no verified contributor identities. Browser test records live only in the test browser; source seed data is unchanged.
+
+## Public-brand motion update
+
+- Reused the original IFAGRITHM gold symbol from the live website.
+- Warm-white/dark modes, dot-grid backdrop, view/record entrance transitions and animated evidence sequence.
+- Desktop screenshot inspected: verification/motion-desktop.png. Dark/mobile captures also saved.
+- Six linked motion records render and navigate to record traceability.
+- Theme toggle works; Pause stops running animations.
+- Emulated prefers-reduced-motion: reduce results in zero animations, even with motion manually enabled.
+- No horizontal overflow at 390px or 320px.
+- Quick Capture still opens and enforces required-field validation.
+- No browser page errors reported.
