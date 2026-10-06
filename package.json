@@ -1,1 +1,29 @@
-{"name":"ifagrithm-os","version":"0.1.0","private":true,"scripts":{"dev":"next dev --port 3010","build":"next build","start":"next start --port 3010","lint":"eslint .","typecheck":"tsc --noEmit"},"dependencies":{"next":"15.5.26","react":"19.1.9","react-dom":"19.1.9"},"devDependencies":{"@types/node":"22.15.30","@types/react":"19.1.6","@types/react-dom":"19.1.5","eslint":"9.34.0","eslint-config-next":"15.5.26","@eslint/eslintrc":"3.3.1","typescript":"5.8.3","tailwindcss":"^4.1.0","@tailwindcss/postcss":"^4.1.0"}}
+{
+  "name": "ifagrithm-os",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3010",
+    "build": "next build",
+    "start": "next start --port 3010",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/operations.test.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.26",
+    "react": "19.1.9",
+    "react-dom": "19.1.9"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "@types/react": "19.1.6",
+    "@types/react-dom": "19.1.5",
+    "eslint": "9.34.0",
+    "eslint-config-next": "15.5.26",
+    "@eslint/eslintrc": "3.3.1",
+    "typescript": "5.8.3",
+    "tailwindcss": "^4.1.0",
+    "@tailwindcss/postcss": "^4.1.0"
+  }
+}

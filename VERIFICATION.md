@@ -27,3 +27,23 @@ Limitations: no multiuser database, no auth, no upload handling, no verified con
 - No horizontal overflow at 390px or 320px.
 - Quick Capture still opens and enforces required-field validation.
 - No browser page errors reported.
+
+## Company operating-map revision
+
+- Primary map: Discover → Investigate → Decide → Approach → Convert → Deliver → Learn, with a return to Discover.
+- Main navigation: Command Centre, Discover, Companies, Research, Content, Pipeline, Delivery, Knowledge. Relationships, Recommendations, Decisions and Activity are secondary.
+- Eight automated tests pass: record-derived queues, confirmation gates, commercial/content branching, additive demo preservation, stage/status updates and contributor attribution.
+- Lint and TypeScript pass; production build passes.
+- Fresh-browser Command Centre has seven stage cards with actual record counts and Content / Ola / Analyst queues.
+- Convert card drills down to one matching company; discovery notes persist after reload.
+- Content captured from NovaX research keeps its parent relationship, defaults to Draft, and updates readiness counts when marked ready.
+- Completing an Ola task removes it from the open assignment count.
+- Confirmation using another company's conversation evidence is rejected; no Problem record is saved.
+- Delivery details expose analysis approach, client deliverable and source traceability.
+- Both 390px and 320px layouts have no horizontal document overflow.
+- Dark mode works. Reduced-motion emulation results in zero running animations.
+- No browser page errors or console errors reported during tested flows.
+- Existing-browser upgrade preserves all 47 pre-existing records and adds missing Content/Delivery examples. Source seed remains separate from browser test captures.
+- Screenshots: verification/operating-desktop.png and verification/operating-mobile.png.
+
+Operating counts are work-record counts with explicit units, not an exclusive company funnel or response-rate analytics. Decision dispositions do not send outreach, publish content or confirm problems automatically. Shared persistence and authentication remain V2.
