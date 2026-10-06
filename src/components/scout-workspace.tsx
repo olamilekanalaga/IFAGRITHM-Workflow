@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, FormEvent } from "react";
 import Image from "next/image";
+import { AppearanceSwitcher } from "./appearance";
 import { Memory, RecordItem } from "@/lib/model";
 import { seed } from "@/lib/seed";
 import {
@@ -65,7 +66,6 @@ export default function ScoutWorkspace() {
     [storageBlocked, setStorageBlocked] = useState(false),
     [screen, setScreen] = useState("Overview"),
     [selected, setSelected] = useState(""),
-    [light, setLight] = useState(false),
     [error, setError] = useState(""),
     [notice, setNotice] = useState(""),
     [form, setForm] = useState(empty),
@@ -87,7 +87,6 @@ export default function ScoutWorkspace() {
           throw Error();
         setMemory(m);
       }
-      setLight(localStorage.getItem("ifagrithm-theme") === "light");
     } catch {
       setStorageBlocked(true);
       setError(
@@ -186,7 +185,7 @@ export default function ScoutWorkspace() {
     URL.revokeObjectURL(u);
   }
   return (
-    <div className={`scout ${light ? "sc-light" : ""}`}>
+    <div className="scout">
       <div className="sc-top">
         <a
           className="sc-brand"
@@ -206,16 +205,7 @@ export default function ScoutWorkspace() {
         </a>
         <div className="sc-tools">
           <button onClick={exportMemory}>Export memory</button>
-          <button
-            onClick={() => {
-              const next = !light;
-              setLight(next);
-              localStorage.setItem("ifagrithm-theme", next ? "light" : "dark");
-            }}
-            aria-label="Toggle colour theme"
-          >
-            {light ? "Dark" : "Light"}
-          </button>
+          <AppearanceSwitcher />
         </div>
       </div>
       <div className="sc-frame">

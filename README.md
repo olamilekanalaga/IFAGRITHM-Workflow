@@ -33,6 +33,10 @@ The database distinguishes companies, observations and submitters. Company names
 
 Admins can approve/suspend accounts, assign Scout/Analyst/Admin roles, correct categories/statuses, review activity, merge companies/observations with a reason, and softly remove bad submissions. A protected owner is deliberately bootstrapped, never awarded to the first registrant. Role requests are separate from actual permissions.
 
+## Appearance
+
+Use **Appearance** beside the profile to choose Ifagrithm, Paper or Terminal. Ifagrithm also supports Dark/Light/System. All skins share the same cards, filters, company history and workflow. Preference is stored locally; database activation is not required. See [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) for tokens, component boundaries, the PaperDAO reference and a future profile-preference adapter. [Verification and screenshots](verification/design-verification.md) document the three-theme/five-width checks.
+
 ## Configuration and activation
 
 See [docs/AUTH-SETUP.md](docs/AUTH-SETUP.md) for exact Supabase, Google OAuth, database migration and initial owner setup. No live Supabase/Google credentials are included. When unconfigured, Google sign-in is disabled; only labelled demonstrations are available.

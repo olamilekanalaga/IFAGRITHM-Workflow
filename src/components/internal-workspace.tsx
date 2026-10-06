@@ -2,6 +2,8 @@
 import { useCallback, useEffect, useState, FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AppearanceSwitcher } from "./appearance";
+import { CompanyCard, CompanyLogo } from "./company-card";
 import {
   Snapshot,
   Profile,
@@ -38,26 +40,6 @@ const blank = {
   source: "",
   observedAt: new Date().toISOString().slice(0, 10),
 };
-function CompanyLogo({ company }: { company: Company }) {
-  const [failed, setFailed] = useState(false),
-    token = process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN;
-  return (
-    <span className="sc-logo">
-      {token && !failed ? (
-        <Image
-          unoptimized
-          src={`https://img.logo.dev/${company.domain}?token=${encodeURIComponent(token)}&size=128`}
-          width={44}
-          height={44}
-          alt={`${company.name} logo`}
-          onError={() => setFailed(true)}
-        />
-      ) : (
-        company.name.slice(0, 2).toUpperCase()
-      )}
-    </span>
-  );
-}
 export default function InternalWorkspace({
   admin = false,
   demonstration,
@@ -75,7 +57,6 @@ export default function InternalWorkspace({
     [companyId, setCompanyId] = useState(""),
     [observationId, setObservationId] = useState(""),
     [personId, setPersonId] = useState(""),
-    [light, setLight] = useState(false),
     [q, setQ] = useState(""),
     [bf, setBf] = useState(""),
     [cf, setCf] = useState(""),
@@ -99,7 +80,6 @@ export default function InternalWorkspace({
   }, [demonstration]);
   useEffect(() => {
     load().catch((e) => setError(e.message));
-    setLight(localStorage.getItem("ifagrithm-theme") === "light");
   }, [load]);
   async function mutate(body: unknown) {
     if (demonstration)
@@ -299,7 +279,7 @@ export default function InternalWorkspace({
       ]
     : ["Overview", "Observe", "Directory", "My Work", "Profile"];
   return (
-    <div className={`scout ${light ? "sc-light" : ""}`}>
+    <div className="scout">
       {demonstration && (
         <div className="demo-banner">
           READ-ONLY FICTIONAL {admin ? "ADMIN" : "WORKER"} DEMONSTRATION ·
@@ -323,12 +303,13 @@ export default function InternalWorkspace({
         <div className="sc-tools">
           {!admin && isAdmin && <a href="/admin">Admin</a>}
           {admin && <Link href="/">Worker app</Link>}
-          <button
-            onClick={() => setLight(!light)}
-            aria-label="Toggle colour theme"
+          <AppearanceSwitcher />
+          <span
+            className="top-profile"
+            title={`${me.display_name} · @${me.username}`}
           >
-            {light ? "Dark" : "Light"}
-          </button>
+            <Avatar profile={me} />
+          </span>
           {demonstration ? <a href="/sign-in">Sign in</a> : <SignOut />}
         </div>
       </div>
@@ -579,7 +560,7 @@ export default function InternalWorkspace({
                     setScreen("Observe");
                   }}
                 >
-                  + Observe this company
+                  + Record observation this company
                 </button>
               </div>
               <h2 className="int-subheading">Observed behaviour</h2>
@@ -647,9 +628,12 @@ export default function InternalWorkspace({
                           key={c.id}
                           onClick={() => selectCompany(c)}
                         >
-                          <strong>{c.name}</strong>
-                          <span>
-                            {c.domain} · {c.category}
+                          <CompanyLogo company={c} />
+                          <span className="company-match-identity">
+                            <strong>{c.name}</strong>
+                            <span>
+                              {c.category} · {c.domain}
+                            </span>
                           </span>
                           <small>✓ Already in directory</small>
                         </button>
@@ -966,13 +950,13 @@ export default function InternalWorkspace({
                     className="sc-primary"
                     onClick={() => resetView("Observe")}
                   >
-                    + Observe
+                    + Record observation
                   </button>
                 )}
               </div>
               {screen === "Overview" && (
                 <>
-                  <div className="sc-stats">
+                  <div className="sc-stats directory-stats">
                     {[
                       ["Companies", activeCompanies.length],
                       [
@@ -998,36 +982,23 @@ export default function InternalWorkspace({
                       </div>
                     ))}
                   </div>
-                  <div className="sc-behaviour-summary">
-                    <p className="sc-eyebrow">BEHAVIOURS OBSERVED</p>
-                    <div>
-                      {labels
-                        .map(
-                          (b) =>
-                            [
-                              b,
-                              activeObservations.filter(
-                                (o) =>
-                                  o.behaviour.toLowerCase() === b.toLowerCase(),
-                              ).length,
-                            ] as const,
-                        )
-                        .filter(([, n]) => n)
-                        .map(([b, n]) => (
-                          <button key={b} onClick={() => setBf(b)}>
-                            {b} <b>{n}</b>
-                          </button>
-                        ))}
-                    </div>
-                    <small>
-                      Observation counts. Multiple sources do not count as
-                      multiple behaviours.
-                    </small>
-                  </div>
                 </>
               )}
               <div className="sc-section-title">
                 <h2>Company directory</h2>
+                <span>
+                  {
+                    filtered
+                      .filter(
+                        (c) => screen !== "Approached" || approached(c.status),
+                      )
+                      .filter(
+                        (c) =>
+                          screen !== "Completed" || c.status === "Completed",
+                      ).length
+                  }{" "}
+                  companies shown
+                </span>
               </div>
               <div className="sc-filters">
                 <input
@@ -1036,26 +1007,6 @@ export default function InternalWorkspace({
                   placeholder="Search companies or domains…"
                   onChange={(e) => setQ(e.target.value)}
                 />
-                <select
-                  aria-label="Behaviour filter"
-                  value={bf}
-                  onChange={(e) => setBf(e.target.value)}
-                >
-                  <option value="">All behaviours</option>
-                  {labels.map((b) => (
-                    <option key={b}>{b}</option>
-                  ))}
-                </select>
-                <select
-                  aria-label="Category filter"
-                  value={cf}
-                  onChange={(e) => setCf(e.target.value)}
-                >
-                  <option value="">All categories</option>
-                  {cats.map((c) => (
-                    <option key={c}>{c}</option>
-                  ))}
-                </select>
                 <select
                   aria-label="Status filter"
                   value={sf}
@@ -1077,6 +1028,54 @@ export default function InternalWorkspace({
                   Reset
                 </button>
               </div>
+              <div className="directory-facets">
+                <div
+                  className="directory-chip-row"
+                  role="group"
+                  aria-label="Filter by behaviour"
+                >
+                  <span className="directory-filter-label">BEHAVIOUR</span>
+                  {["", ...labels].map((b) => {
+                    const count = b
+                      ? activeObservations.filter(
+                          (o) => o.behaviour.toLowerCase() === b.toLowerCase(),
+                        ).length
+                      : activeObservations.length;
+                    return (
+                      <button
+                        type="button"
+                        key={b}
+                        aria-pressed={bf === b}
+                        onClick={() => setBf(b)}
+                      >
+                        {b || "All"}
+                        <span>{count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div
+                  className="directory-chip-row"
+                  role="group"
+                  aria-label="Filter by category"
+                >
+                  <span className="directory-filter-label">CATEGORY</span>
+                  {["", ...cats].map((c) => (
+                    <button
+                      type="button"
+                      key={c}
+                      aria-pressed={cf === c}
+                      onClick={() => setCf(c)}
+                    >
+                      {c || "All"}
+                    </button>
+                  ))}
+                </div>
+                <p className="directory-filter-note">
+                  Behaviour counts refer to observations. Multiple sources count
+                  as one event.
+                </p>
+              </div>
               <div className="sc-cards">
                 {filtered
                   .filter(
@@ -1089,64 +1088,49 @@ export default function InternalWorkspace({
                     const obs = recentObservations(s, c.id),
                       latest = obs[0];
                     return (
-                      <button
-                        className="sc-card"
+                      <CompanyCard
                         key={c.id}
-                        onClick={() => setCompanyId(c.id)}
-                      >
-                        <div className="sc-card-top">
-                          <CompanyLogo company={c} />
-                          <div>
-                            <h3>{c.name}</h3>
-                            <span>{c.category}</span>
-                          </div>
-                          <span className="sc-arrow">↗</span>
-                        </div>
-                        <div className="sc-card-field">
-                          <small>DOMAIN</small>
-                          <span>{c.domain}</span>
-                        </div>
-                        <div className="sc-card-field">
-                          <small>BEHAVIOURAL HISTORY</small>
-                          <span>
-                            {labels
-                              .map(
-                                (b) =>
-                                  [
-                                    b,
-                                    obs.filter(
-                                      (o) =>
-                                        o.behaviour.toLowerCase() ===
-                                        b.toLowerCase(),
-                                    ).length,
-                                  ] as const,
-                              )
-                              .filter(([, n]) => n)
-                              .map(([b, n]) => `${b} × ${n}`)
-                              .join(" · ") || "No observations yet"}
-                          </span>
-                        </div>
-                        <div className="sc-card-field">
-                          <small>LATEST OBSERVATION</small>
-                          <strong>
-                            {latest
-                              ? `${latest.behaviour} · ${latest.observed_on}`
-                              : "—"}
-                          </strong>
-                          {latest?.detail && (
-                            <span>
-                              {metricLabel(latest.behaviour)}: {latest.detail}
-                            </span>
-                          )}
-                        </div>
-                        <div className="sc-card-bottom">
-                          <span>{c.status}</span>
-                          <small>{obs.length} observations</small>
-                        </div>
-                      </button>
+                        company={c}
+                        observations={obs}
+                        source={
+                          s.sources.find(
+                            (src) =>
+                              src.observation_id === latest?.id &&
+                              !src.deleted_at,
+                          )?.url
+                        }
+                        history={labels
+                          .map(
+                            (b) =>
+                              [
+                                b,
+                                obs.filter(
+                                  (o) =>
+                                    o.behaviour.toLowerCase() ===
+                                    b.toLowerCase(),
+                                ).length,
+                              ] as const,
+                          )
+                          .filter(([, n]) => n)
+                          .map(([b, n]) => `${b} × ${n}`)
+                          .join(" · ")}
+                        open={() => setCompanyId(c.id)}
+                      />
                     );
                   })}
               </div>
+              {!!activeCompanies.length &&
+                !filtered
+                  .filter(
+                    (c) => screen !== "Approached" || approached(c.status),
+                  )
+                  .filter(
+                    (c) => screen !== "Completed" || c.status === "Completed",
+                  ).length && (
+                  <p className="sc-empty" role="status">
+                    No companies match this view. Adjust or reset the filters.
+                  </p>
+                )}
               {!activeCompanies.length && (
                 <p className="sc-empty">
                   No companies yet. The first scout observation creates the

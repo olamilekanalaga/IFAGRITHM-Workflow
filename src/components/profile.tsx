@@ -1,4 +1,5 @@
 "use client";
+import { AppearanceSwitcher } from "./appearance";
 import { FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import { Profile, Snapshot, roles, canAdmin, canEnter } from "@/lib/identity";
@@ -192,6 +193,9 @@ export function AccessGate({
 }) {
   return (
     <main className="identity-page">
+      <div className="identity-appearance">
+        <AppearanceSwitcher />
+      </div>
       <div className="identity-card scout">
         {!snapshot.profile.setup_complete ? (
           <ProfileForm snapshot={snapshot} onSaved={onRefresh} />

@@ -1,4 +1,5 @@
 "use client";
+import { AppearanceSwitcher } from "./appearance";
 import { useState } from "react";
 import Image from "next/image";
 import { browserClient } from "@/lib/supabase/client";
@@ -31,6 +32,9 @@ export default function SignIn({
   }
   return (
     <main className="identity-page">
+      <div className="identity-appearance">
+        <AppearanceSwitcher />
+      </div>
       <div className="identity-card">
         <Image
           src="/brand-symbol-transparent.png"
