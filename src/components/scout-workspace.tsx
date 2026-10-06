@@ -2,6 +2,12 @@
 import { useEffect, useState, FormEvent } from "react";
 import Image from "next/image";
 import { AppearanceSwitcher } from "./appearance";
+import {
+  MetricCards,
+  BehaviourCards,
+  ProjectCard,
+  MobileNavigation,
+} from "./directory-visuals";
 import { Memory, RecordItem } from "@/lib/model";
 import { seed } from "@/lib/seed";
 import {
@@ -104,6 +110,9 @@ export default function ScoutWorkspace() {
     setMemory(m);
   }
   const companies = memory.records.filter((r) => r.kind === "Company");
+  const visibleCompanies = filterCompanies(memory, q, bf, cf, sf)
+    .filter((c) => screen !== "Approached" || approached(c.status))
+    .filter((c) => screen !== "Completed" || c.status === "Completed");
   const labels = [
     ...behaviours,
     ...memory.records.filter((r) => r.kind === "Behaviour").map((r) => r.title),
@@ -185,7 +194,7 @@ export default function ScoutWorkspace() {
     URL.revokeObjectURL(u);
   }
   return (
-    <div className="scout">
+    <div className="scout worker-workspace legacy-workspace">
       <div className="sc-top">
         <a
           className="sc-brand"
@@ -212,7 +221,7 @@ export default function ScoutWorkspace() {
         <div className="sc-rail">
           <p className="sc-eyebrow">COMPANY INTELLIGENCE</p>
           <nav aria-label="Main navigation">
-            {["Overview", "Observe"].map((s) => (
+            {["Overview", "Observe", "Directory"].map((s) => (
               <button
                 key={s}
                 className={screen === s ? "active" : ""}
@@ -225,7 +234,9 @@ export default function ScoutWorkspace() {
               >
                 {s === "Observe" ? "+ " : ""}
                 {s}
-                <span>{s === "Overview" ? "01" : "02"}</span>
+                <span>
+                  {s === "Overview" ? "01" : s === "Observe" ? "02" : "03"}
+                </span>
               </button>
             ))}
           </nav>
@@ -572,9 +583,13 @@ export default function ScoutWorkspace() {
               <div className="sc-heading">
                 <div>
                   <h1>
-                    Market observations.
-                    <br />
-                    <span>Company intelligence.</span>
+                    {screen === "Overview"
+                      ? "Market observations."
+                      : screen === "Approached"
+                        ? "Approached companies"
+                        : screen === "Completed"
+                          ? "Completed companies"
+                          : "Company directory"}
                   </h1>
                   <p className="sc-intro">
                     What we saw, where we saw it, and the companies behind it.
@@ -584,73 +599,88 @@ export default function ScoutWorkspace() {
                   className="sc-primary"
                   onClick={() => setScreen("Observe")}
                 >
-                  + Observe
+                  + Record observation
                 </button>
               </div>
-              <div className="sc-stats">
-                {[
-                  ["Companies", companies.length],
-                  [
-                    "Categories",
-                    new Set(
-                      companies
-                        .map((c) => c.category?.trim().toLowerCase())
-                        .filter(Boolean),
-                    ).size,
-                  ],
-                  [
-                    "Approached",
-                    companies.filter((c) => approached(c.status)).length,
-                  ],
-                  [
-                    "Completed",
-                    companies.filter((c) => c.status === "Completed").length,
-                  ],
-                ].map(([label, count]) => (
-                  <div key={label}>
-                    <span>{label}</span>
-                    <strong>{count}</strong>
-                  </div>
-                ))}
-              </div>
-              <div className="sc-behaviour-summary">
-                <span className="sc-eyebrow">BEHAVIOURS OBSERVED</span>
-                <div>
-                  {labels
-                    .filter((b) =>
-                      memory.records.some(
+              {screen === "Overview" && (
+                <>
+                  <MetricCards
+                    metrics={[
+                      {
+                        label: "Companies",
+                        count: companies.length,
+                        open: () => {
+                          setQ("");
+                          setBf("");
+                          setCf("");
+                          setSf("");
+                          setScreen("Directory");
+                        },
+                      },
+                      {
+                        label: "Categories",
+                        count: new Set(
+                          companies
+                            .map((c) => c.category?.trim().toLowerCase())
+                            .filter(Boolean),
+                        ).size,
+                        open: () => {
+                          const filter = document.querySelector(
+                            '[aria-label="Category filter"]',
+                          ) as HTMLSelectElement;
+                          filter?.scrollIntoView({ block: "center" });
+                          filter?.focus({ preventScroll: true });
+                        },
+                      },
+                      {
+                        label: "Approached",
+                        count: companies.filter((c) => approached(c.status))
+                          .length,
+                        open: () => {
+                          setQ("");
+                          setBf("");
+                          setCf("");
+                          setSf("");
+                          setScreen("Approached");
+                        },
+                      },
+                      {
+                        label: "Completed",
+                        count: companies.filter((c) => c.status === "Completed")
+                          .length,
+                        open: () => {
+                          setQ("");
+                          setBf("");
+                          setCf("");
+                          setSf("");
+                          setScreen("Completed");
+                        },
+                      },
+                    ]}
+                  />
+                  <BehaviourCards
+                    items={labels.map((label) => ({
+                      label,
+                      count: memory.records.filter(
                         (o) =>
                           o.kind === "Observation" &&
                           behaviourOf(memory, o).toLowerCase() ===
-                            b.toLowerCase(),
-                      ),
-                    )
-                    .map((b) => (
-                      <button key={b} onClick={() => setBf(b)}>
-                        {b}{" "}
-                        <b>
-                          {
-                            memory.records.filter(
-                              (o) =>
-                                o.kind === "Observation" &&
-                                behaviourOf(memory, o).toLowerCase() ===
-                                  b.toLowerCase(),
-                            ).length
-                          }
-                        </b>
-                      </button>
-                    ))}
-                </div>
-                <small>
-                  Counts are observations; a company can appear under several
-                  behaviours.
-                </small>
-              </div>
-              <div className="sc-section-title">
+                            label.toLowerCase(),
+                      ).length,
+                    }))}
+                    selected={bf}
+                    choose={(label) => {
+                      setBf(label);
+                      document
+                        .getElementById("company-directory")
+                        ?.scrollIntoView({ block: "start" });
+                    }}
+                  />
+                </>
+              )}
+              <div className="sc-section-title" id="company-directory">
                 <h2>Company directory</h2>
-                <span>
-                  {filterCompanies(memory, q, bf, cf, sf).length} companies
-                </span>
+                <span>{visibleCompanies.length} companies</span>
               </div>
               <div className="sc-filters">
                 <input
@@ -707,59 +737,35 @@ export default function ScoutWorkspace() {
                 </button>
               </div>
               <div className="sc-cards">
-                {filterCompanies(memory, q, bf, cf, sf).map((c) => {
+                {visibleCompanies.map((c) => {
                   const o = companyObservations(memory, c.id)[0];
                   return (
-                    <button
-                      className="sc-card"
+                    <ProjectCard
                       key={c.id}
-                      onClick={() => setSelected(c.id)}
-                    >
-                      <div className="sc-card-top">
-                        <Logo company={c} />
-                        <div>
-                          <h3>{c.title}</h3>
-                          <span>{c.category || "Uncategorised"}</span>
-                        </div>
-                        <span className="sc-arrow">↗</span>
-                      </div>
-                      <div className="sc-card-field">
-                        <small>BEHAVIOUR / LATEST OBSERVATION</small>
-                        <strong>
-                          <span className="sc-dot" />
-                          {o
-                            ? behaviourOf(memory, o)
-                            : "No observations recorded"}
-                        </strong>
-                      </div>
-                      {o?.behaviourDetail && (
-                        <div className="sc-card-field">
-                          <small>
-                            {metricLabel(behaviourOf(memory, o)).toUpperCase()}
-                          </small>
-                          <strong>{o.behaviourDetail}</strong>
-                        </div>
-                      )}
-                      <div className="sc-card-field">
-                        <small>SOURCE</small>
-                        <span>
-                          {o?.source && /^https?:\/\//.test(o.source)
-                            ? safeHost(o.source)
-                            : "Sample note / no URL"}
-                        </span>
-                      </div>
-                      <div className="sc-card-bottom">
-                        <span>{displayStatus(c.status)}</span>
-                        <small>
-                          {companyObservations(memory, c.id).length}{" "}
-                          observations
-                        </small>
-                      </div>
-                    </button>
+                      id={c.id}
+                      name={c.title}
+                      category={c.category || "Uncategorised"}
+                      domain={safeHost(c.website)}
+                      logo={<Logo company={c} />}
+                      behaviour={o ? behaviourOf(memory, o) : undefined}
+                      valueLabel={
+                        o ? metricLabel(behaviourOf(memory, o)) : undefined
+                      }
+                      value={o?.behaviourDetail}
+                      source={safeHost(o?.source) || "Sample note / no URL"}
+                      date={
+                        o
+                          ? (o.observedAt || o.createdAt).slice(0, 10)
+                          : undefined
+                      }
+                      status={displayStatus(c.status)}
+                      count={companyObservations(memory, c.id).length}
+                      open={() => setSelected(c.id)}
+                    />
                   );
                 })}
               </div>
-              {!filterCompanies(memory, q, bf, cf, sf).length && (
+              {!visibleCompanies.length && (
                 <div className="sc-empty">
                   No companies match these filters. Reset filters or capture a
                   new observation.
@@ -773,6 +779,16 @@ export default function ScoutWorkspace() {
           )}
         </main>
       </div>
+      <MobileNavigation
+        legacy
+        current={selected ? "Directory" : screen}
+        navigate={(next) => {
+          setScreen(next);
+          setSelected("");
+          setNotice("");
+          window.scrollTo({ top: 0 });
+        }}
+      />
     </div>
   );
 }

@@ -1,5 +1,7 @@
 # Stage 1A visual-system verification
 
+This records the initial theme-system pass. The subsequent [information hierarchy correction](hierarchy-verification.md) supersedes these overview/card screenshots and mobile navigation notes.
+
 Local production build tested with Chromium browser automation on 6 October 2026.
 
 ## Checks

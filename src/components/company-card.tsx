@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Company, Observation } from "@/lib/identity";
 import { metricLabel } from "@/lib/scout";
+import { ProjectCard } from "./directory-visuals";
 export function CompanyLogo({
   company,
   logoUrl,
@@ -61,48 +62,21 @@ export function CompanyCard({
 }) {
   const latest = observations[0];
   return (
-    <button type="button" className="sc-card company-card" onClick={open}>
-      <span className="sc-card-top">
-        <CompanyLogo company={company} />
-        <span className="company-card-identity">
-          <strong>{company.name}</strong>
-          <span>{company.category}</span>
-        </span>
-        <span className="sc-arrow" aria-hidden="true">
-          ↗
-        </span>
-      </span>
-      <span className="company-card-domain">{company.domain}</span>
-      <span className="company-card-observation">
-        <small>LATEST OBSERVED BEHAVIOUR</small>
-        <strong>
-          <span className="sc-dot" aria-hidden="true" />
-          {latest?.behaviour || "No observations yet"}
-        </strong>
-        <span>
-          {latest
-            ? `${sourceLabel(source)} · ${latest.observed_on}`
-            : "Add an observation to begin its history."}
-        </span>
-      </span>
-      {latest?.detail && (
-        <span className="company-card-value">
-          <small>{metricLabel(latest.behaviour)}</small>
-          <strong>{latest.detail}</strong>
-        </span>
-      )}
-      <span className="company-card-history">
-        <small>BEHAVIOURAL HISTORY</small>
-        <span>{history || "No observations yet"}</span>
-      </span>
-      <span className="sc-card-bottom">
-        <span className="company-card-status">{company.status}</span>
-        <span>
-          {observations.length}{" "}
-          {observations.length === 1 ? "observation" : "observations"}{" "}
-          <span aria-hidden="true">→</span>
-        </span>
-      </span>
-    </button>
+    <ProjectCard
+      id={company.id}
+      name={company.name}
+      category={company.category}
+      domain={company.domain}
+      logo={<CompanyLogo company={company} />}
+      behaviour={latest?.behaviour}
+      valueLabel={latest ? metricLabel(latest.behaviour) : undefined}
+      value={latest?.detail}
+      source={latest ? sourceLabel(source) : undefined}
+      date={latest?.observed_on}
+      history={history}
+      status={company.status}
+      count={observations.length}
+      open={open}
+    />
   );
 }

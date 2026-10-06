@@ -35,7 +35,7 @@ Admins can approve/suspend accounts, assign Scout/Analyst/Admin roles, correct c
 
 ## Appearance
 
-Use **Appearance** beside the profile to choose Ifagrithm, Paper or Terminal. Ifagrithm also supports Dark/Light/System. All skins share the same cards, filters, company history and workflow. Preference is stored locally; database activation is not required. See [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) for tokens, component boundaries, the PaperDAO reference and a future profile-preference adapter. [Verification and screenshots](verification/design-verification.md) document the three-theme/five-width checks.
+Use **Appearance** beside the profile to choose Ifagrithm, Paper or Terminal. Ifagrithm also supports Dark/Light/System. All skins share the same cards, filters, company history and workflow. Preference is stored locally; database activation is not required. See [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) for tokens, component boundaries, the PaperDAO reference and a future profile-preference adapter. [Latest hierarchy verification and screenshots](verification/hierarchy-verification.md) document the three-theme/five-width checks and the screenshot-guided metric, behaviour, project-card and mobile-navigation correction. The [earlier design verification](verification/design-verification.md) records the initial theme-system pass.
 
 ## Configuration and activation
 

@@ -6,6 +6,11 @@ import { AppearanceSwitcher } from "./appearance";
 import { CompanyCard, CompanyLogo } from "./company-card";
 import { calendarDate, timestamp } from "@/lib/presentation";
 import {
+  MetricCards,
+  BehaviourCards,
+  MobileNavigation,
+} from "./directory-visuals";
+import {
   Snapshot,
   Profile,
   Observation,
@@ -280,7 +285,7 @@ export default function InternalWorkspace({
       ]
     : ["Overview", "Observe", "Directory", "My Work", "Profile"];
   return (
-    <div className="scout">
+    <div className={`scout ${admin ? "admin-workspace" : "worker-workspace"}`}>
       {demonstration && (
         <div className="demo-banner">
           READ-ONLY FICTIONAL {admin ? "ADMIN" : "WORKER"} DEMONSTRATION ·
@@ -305,12 +310,15 @@ export default function InternalWorkspace({
           {!admin && isAdmin && <a href="/admin">Admin</a>}
           {admin && <Link href="/">Worker app</Link>}
           <AppearanceSwitcher />
-          <span
+          <button
+            type="button"
+            onClick={() => resetView("Profile")}
+            aria-label="Open your profile"
             className="top-profile"
             title={`${me.display_name} · @${me.username}`}
           >
             <Avatar profile={me} />
-          </span>
+          </button>
           {demonstration ? <a href="/sign-in">Sign in</a> : <SignOut />}
         </div>
       </div>
@@ -940,7 +948,11 @@ export default function InternalWorkspace({
                   <h1>
                     {screen === "Overview"
                       ? "Market observations."
-                      : "Company directory"}
+                      : screen === "Approached"
+                        ? "Approached companies"
+                        : screen === "Completed"
+                          ? "Completed companies"
+                          : "Company directory"}
                   </h1>
                   <p className="sc-intro">
                     What we saw, where we saw it, and who documented it.
@@ -957,35 +969,82 @@ export default function InternalWorkspace({
               </div>
               {screen === "Overview" && (
                 <>
-                  <div className="sc-stats directory-stats">
-                    {[
-                      ["Companies", activeCompanies.length],
-                      [
-                        "Categories",
-                        new Set(
+                  <MetricCards
+                    metrics={[
+                      {
+                        label: "Companies",
+                        count: activeCompanies.length,
+                        open: () => {
+                          setQ("");
+                          setBf("");
+                          setCf("");
+                          setSf("");
+                          resetView(admin ? "All Companies" : "Directory");
+                        },
+                      },
+                      {
+                        label: "Categories",
+                        count: new Set(
                           activeCompanies.map((c) => c.category.toLowerCase()),
                         ).size,
-                      ],
-                      [
-                        "Approached",
-                        activeCompanies.filter((c) => approached(c.status))
-                          .length,
-                      ],
-                      [
-                        "Completed",
-                        activeCompanies.filter((c) => c.status === "Completed")
-                          .length,
-                      ],
-                    ].map(([label, n]) => (
-                      <div key={label}>
-                        <span>{label}</span>
-                        <strong>{n}</strong>
-                      </div>
-                    ))}
-                  </div>
+                        open: () => {
+                          document
+                            .querySelector('[aria-label="Filter by category"]')
+                            ?.scrollIntoView({ block: "center" });
+                          (
+                            document.querySelector(
+                              '[aria-label="Filter by category"] button',
+                            ) as HTMLButtonElement
+                          )?.focus({ preventScroll: true });
+                        },
+                      },
+                      {
+                        label: "Approached",
+                        count: activeCompanies.filter((c) =>
+                          approached(c.status),
+                        ).length,
+                        open: () => {
+                          setQ("");
+                          setBf("");
+                          setCf("");
+                          setSf("");
+                          resetView("Approached");
+                        },
+                      },
+                      {
+                        label: "Completed",
+                        count: activeCompanies.filter(
+                          (c) => c.status === "Completed",
+                        ).length,
+                        open: () => {
+                          setQ("");
+                          setBf("");
+                          setCf("");
+                          setSf("");
+                          resetView("Completed");
+                        },
+                      },
+                    ]}
+                  />
+                  <BehaviourCards
+                    items={labels.map((label) => ({
+                      label,
+                      count: activeObservations.filter(
+                        (o) =>
+                          o.behaviour.toLowerCase() === label.toLowerCase(),
+                      ).length,
+                    }))}
+                    selected={bf}
+                    choose={(label) => {
+                      setBf(label);
+                      document
+                        .getElementById("company-directory")
+                        ?.scrollIntoView({ block: "start" });
+                    }}
+                  />
                 </>
               )}
-              <div className="sc-section-title">
+              <div className="sc-section-title" id="company-directory">
                 <h2>Company directory</h2>
                 <span>
                   {
@@ -1155,6 +1214,15 @@ export default function InternalWorkspace({
           )}
         </main>
       </div>
+      {!admin && (
+        <MobileNavigation
+          current={company || observation || person ? "Directory" : screen}
+          navigate={(next) => {
+            resetView(next);
+            window.scrollTo({ top: 0 });
+          }}
+        />
+      )}
     </div>
   );
 }
