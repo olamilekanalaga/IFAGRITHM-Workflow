@@ -203,37 +203,54 @@ export function ProjectCard({
     >
       <span className="project-identity-mark">
         {logo}
+        <span className="company-card-identity">
+          <strong>{name}</strong>
+          <span>{category}</span>
+          <span className="company-card-domain">{domain}</span>
+        </span>
         <span className="project-mark" aria-hidden="true">
-          ↗
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M6 18 18 6M7 6h11v11" />
+          </svg>
         </span>
       </span>
-      <span className="company-card-identity">
-        <strong>{name}</strong>
-        <span>{category}</span>
-      </span>
-      <span className="company-card-domain">{domain}</span>
-      <span className="company-card-observation">
-        <small>LATEST INTERVENTION</small>
-        <strong>
-          <span className="sc-dot" aria-hidden="true" />
-          {behaviour || "No observations yet"}
-        </strong>
-      </span>
-      {value && (
-        <span className="company-card-value">
-          <small>{valueLabel}</small>
-          <strong>{value}</strong>
+      <span className={`project-activity${value ? " has-value" : ""}`}>
+        <span className="company-card-observation">
+          <small>LATEST INTERVENTION</small>
+          <strong>
+            <span className="sc-dot" aria-hidden="true" />
+            {behaviour || "No observations yet"}
+          </strong>
         </span>
-      )}
-      {history && (
-        <span className="company-card-history" title={history}>
-          <small>HISTORY</small>
-          <span>{history}</span>
+        {value && (
+          <span className="company-card-value">
+            <small>{valueLabel}</small>
+            <strong>{value}</strong>
+          </span>
+        )}
+      </span>
+      <span className="project-evidence">
+        {history && (
+          <span className="company-card-history" title={history}>
+            <small>HISTORY</small>
+            <span>{history}</span>
+          </span>
+        )}
+        <span className="project-source">
+          <span className="project-source-name" title={source}>
+            {behaviour ? source || "No source attached" : "History starts here"}
+          </span>
+          {date && <time dateTime={date}>{date}</time>}
         </span>
-      )}
-      <span className="project-source">
-        {behaviour ? source || "No source attached" : "History starts here"}
-        {date && <span>{date}</span>}
       </span>
       <span className="sc-card-bottom">
         <span className="company-card-status">{status}</span>

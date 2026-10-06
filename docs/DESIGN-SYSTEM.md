@@ -33,7 +33,7 @@ Metric and entity geometry stays the same across skins: 16px metric radius, 18px
 
 Overview metrics are buttons with record-derived counts. Companies opens the directory; Categories focuses the category filter; Approached and Completed open their existing status views. Behaviour cards filter companies by existing observations. The company remains one canonical entity with many observations; missing behaviour values stay omitted.
 
-The company grid is two columns on 380–700px phones and one below 380px. It uses the existing tablet/desktop breakpoints above that. Worker phones show a fixed safe-area-aware navigation: Overview, Observe, Directory and My Work, with Profile accessible from the header. The older local demonstration has Overview, Observe and Directory because it has no authenticated My Work model. Admin retains its separate administrative navigation. Content has bottom padding so navigation does not cover final controls.
+The company directory uses one full-width horizontal card per row at every width. Desktop aligns company identity, intervention/value and evidence across the row; phones use a compact logo/name header, a paired intervention/value area, source/date details and a status/count footer. Missing values leave no empty placeholder. Metric and intervention cards retain their own layouts. Worker phones show a fixed safe-area-aware navigation: Overview, Observe, Directory and My Work, with Profile accessible from the header. The older local demonstration has Overview, Observe and Directory because it has no authenticated My Work model. Admin retains its separate administrative navigation. Content has bottom padding so navigation does not cover final controls.
 
 ## Preference persistence
 

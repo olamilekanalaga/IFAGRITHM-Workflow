@@ -1,0 +1,1478 @@
+{
+  "legacy": [
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.94,
+      "dimensions": [
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "ifagrithm",
+      "width": 1440
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.13,
+      "dimensions": [
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "paper",
+      "width": 1440
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 6.2,
+      "dimensions": [
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        },
+        {
+          "height": 157,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "terminal",
+      "width": 1440
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.94,
+      "dimensions": [
+        {
+          "height": 217,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "ifagrithm",
+      "width": 1024
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.13,
+      "dimensions": [
+        {
+          "height": 217,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "paper",
+      "width": 1024
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 6.2,
+      "dimensions": [
+        {
+          "height": 217,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        },
+        {
+          "height": 211,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "terminal",
+      "width": 1024
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.94,
+      "dimensions": [
+        {
+          "height": 217,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "ifagrithm",
+      "width": 768
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.13,
+      "dimensions": [
+        {
+          "height": 217,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "paper",
+      "width": 768
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": false,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 6.2,
+      "dimensions": [
+        {
+          "height": 217,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        },
+        {
+          "height": 211,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "terminal",
+      "width": 768
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": true,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.94,
+      "dimensions": [
+        {
+          "height": 215,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "ifagrithm",
+      "width": 390
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": true,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.13,
+      "dimensions": [
+        {
+          "height": 215,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "paper",
+      "width": 390
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": true,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 6.2,
+      "dimensions": [
+        {
+          "height": 215,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        },
+        {
+          "height": 209,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "terminal",
+      "width": 390
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": true,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.94,
+      "dimensions": [
+        {
+          "height": 228,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "ifagrithm",
+      "width": 320
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": true,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 5.13,
+      "dimensions": [
+        {
+          "height": 228,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "paper",
+      "width": 320
+    },
+    {
+      "amountCount": 1,
+      "bottomNav": true,
+      "cards": 5,
+      "contentOverflow": false,
+      "contrast": 6.2,
+      "dimensions": [
+        {
+          "height": 228,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        },
+        {
+          "height": 209,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 4,
+      "theme": "terminal",
+      "width": 320
+    }
+  ],
+  "worker": [
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 171,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 1440
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 171,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 1440
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 171,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 1440
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 225,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 1024
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 225,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 1024
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 225,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 1024
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 225,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 768
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 225,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 768
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 225,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 768
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": true,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 223,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 390
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": true,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 223,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 390
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": true,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 223,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 390
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": true,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 223,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 320
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": true,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 223,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 320
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": true,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 223,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 320
+    }
+  ],
+  "admin": [
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 171,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 1440
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 171,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 1440
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 172,
+          "width": 1137
+        },
+        {
+          "height": 171,
+          "width": 1137
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 1440
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 225,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 1024
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 225,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 1024
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 252,
+          "width": 777
+        },
+        {
+          "height": 225,
+          "width": 777
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 1024
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 225,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 768
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 225,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 768
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 252,
+          "width": 697
+        },
+        {
+          "height": 225,
+          "width": 697
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 768
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 223,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 390
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 223,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 390
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 252,
+          "width": 343
+        },
+        {
+          "height": 223,
+          "width": 343
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 390
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.16,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 223,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "ifagrithm",
+      "width": 320
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 5.06,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 223,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "paper",
+      "width": 320
+    },
+    {
+      "amountCount": 2,
+      "bottomNav": false,
+      "cards": 3,
+      "contentOverflow": false,
+      "contrast": 6.37,
+      "dimensions": [
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 252,
+          "width": 273
+        },
+        {
+          "height": 223,
+          "width": 273
+        }
+      ],
+      "fullWidth": true,
+      "gridColumns": 1,
+      "horizontal": true,
+      "onePerRow": true,
+      "pageOverflow": false,
+      "scene": "Directory",
+      "sourceDateCount": 2,
+      "theme": "terminal",
+      "width": 320
+    }
+  ]
+}

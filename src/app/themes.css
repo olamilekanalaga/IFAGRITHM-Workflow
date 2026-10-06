@@ -1097,67 +1097,101 @@ body {
 #company-directory {
   scroll-margin-top: 20px;
 }
+.scout .sc-cards {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
 .scout .project-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px 24px;
+  align-items: start;
   background: var(--object-surface);
   border: 1.5px solid var(--object-border);
   border-radius: var(--entity-radius);
   padding: var(--entity-padding);
-  min-height: 355px;
+  min-height: 0;
   box-shadow: var(--object-shadow);
 }
+.project-card > span {
+  min-width: 0;
+}
 .project-identity-mark {
-  display: flex;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 26px;
   align-items: start;
-  justify-content: space-between;
-  margin-bottom: 22px;
+  gap: 12px;
+  margin: 0;
 }
 .project-mark {
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: var(--arrow-surface);
   color: var(--ink-muted);
 }
 .project-card .sc-logo {
-  width: 58px;
-  height: 58px;
-  font-size: 20px;
-  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  font-size: 18px;
+  border-radius: 10px;
   background: var(--arrow-surface);
   border-color: var(--object-border);
 }
 .project-card .company-card-identity {
-  gap: 7px;
-  margin-bottom: 10px;
+  gap: 5px;
+  margin: 0;
 }
 .project-card .company-card-identity > strong {
-  font-size: 21px;
+  font-size: 20px;
   line-height: 1.25;
 }
 .project-card .company-card-identity > span {
   color: var(--ink-muted);
   font-size: 12px;
+  overflow-wrap: anywhere;
 }
-.project-card .company-card-domain {
-  margin-bottom: 0;
+.project-card .company-card-identity > .company-card-domain {
+  font-size: 10px;
 }
-.project-card .company-card-observation {
-  margin: 22px 0 14px;
-  gap: 8px;
+.project-activity {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
 }
+.project-activity.has-value {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+.project-card .company-card-observation,
 .project-card .company-card-value {
   display: grid;
-  gap: 5px;
-  margin-bottom: 18px;
+  gap: 7px;
+  min-width: 0;
+  margin: 0;
+}
+.project-card .company-card-observation > small,
+.project-card .company-card-value > small,
+.project-card .company-card-history > small {
+  font: 500 9px/1.5 var(--font-label);
+  color: var(--ink-muted);
+}
+.project-card .company-card-observation > strong {
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 .project-card .company-card-value > strong {
-  font-size: 22px;
-  font-family: var(--font-heading);
+  font: 500 19px/1.35 var(--font-heading);
+}
+.project-evidence {
+  display: grid;
+  gap: 12px;
 }
 .project-card .company-card-history {
-  margin-bottom: 18px;
+  margin: 0;
+  gap: 5px;
   font-size: 11px;
 }
 .project-card .company-card-history > span {
@@ -1167,21 +1201,30 @@ body {
   overflow: hidden;
 }
 .project-source {
-  display: grid;
-  gap: 4px;
-  margin-top: auto;
-  padding: 0 0 16px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
   color: var(--ink-muted);
   font-size: 11px;
   line-height: 1.6;
+}
+.project-source-name {
+  min-width: 0;
+  flex: 1;
   overflow-wrap: anywhere;
 }
-.project-source > span {
-  font-size: 10px;
-  font-family: var(--font-label);
+.project-source time {
+  flex-shrink: 0;
+  font: 10px/1.6 var(--font-label);
 }
 .project-card .sc-card-bottom {
-  margin-top: 0;
+  grid-column: 1/-1;
+  margin: 0;
+  padding-top: 12px;
   flex-wrap: wrap;
   color: var(--ink-muted);
   border-color: var(--object-border);
@@ -1198,6 +1241,15 @@ body {
 .project-open {
   font-size: 16px;
   color: var(--ink);
+}
+@media (max-width: 1100px) {
+  .scout .project-card {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 16px 22px;
+  }
+  .project-identity-mark {
+    grid-column: 1/-1;
+  }
 }
 .company-match-identity {
   overflow-wrap: anywhere;
@@ -1273,7 +1325,49 @@ body {
     gap: 12px;
   }
   .scout .project-card {
-    padding: 20px;
+    --entity-padding: 16px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .project-identity-mark {
+    grid-template-columns: 40px minmax(0, 1fr) 24px;
+    gap: 10px;
+  }
+  .project-card .sc-logo {
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+  .project-mark {
+    width: 24px;
+    height: 24px;
+  }
+  .project-card .company-card-identity > strong {
+    font-size: 18px;
+  }
+  .project-card .company-card-identity > span {
+    font-size: 11px;
+  }
+  .project-card .company-card-identity > .company-card-domain {
+    font-size: 10px;
+  }
+  .project-card .company-card-history > small {
+    display: none;
+  }
+  .project-card .company-card-history {
+    font-size: 10px;
+  }
+  .project-evidence {
+    gap: 6px;
+  }
+  .project-source {
+    font-size: 10px;
+  }
+  .project-card .sc-card-bottom {
+    font-size: 10px;
+    gap: 8px;
+    padding-top: 10px;
   }
   .directory-facets {
     padding-bottom: 14px;
@@ -1323,72 +1417,6 @@ body {
   }
   .sc-section-title h2 {
     font-size: 18px;
-  }
-}
-@media (min-width: 380px) and (max-width: 700px) {
-  .sc-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-  .scout .project-card {
-    padding: 14px;
-    min-height: 330px;
-  }
-  .project-identity-mark {
-    margin-bottom: 18px;
-  }
-  .project-card .sc-logo {
-    width: 44px;
-    height: 44px;
-    font-size: 16px;
-  }
-  .project-mark {
-    width: 24px;
-    height: 24px;
-    font-size: 13px;
-  }
-  .project-card .company-card-identity > strong {
-    font-size: 17px;
-  }
-  .project-card .company-card-identity > span {
-    font-size: 10px;
-  }
-  .project-card .company-card-domain {
-    font-size: 9px;
-  }
-  .project-card .company-card-observation > small,
-  .project-card .company-card-history > small {
-    font-size: 8px;
-  }
-  .project-card .company-card-observation > strong {
-    font-size: 11px;
-    line-height: 1.6;
-    overflow-wrap: anywhere;
-  }
-  .project-card .company-card-value > strong {
-    font-size: 19px;
-  }
-  .project-card .company-card-value > small {
-    font-size: 10px;
-  }
-  .project-card .company-card-history {
-    font-size: 10px;
-  }
-  .project-source {
-    font-size: 10px;
-  }
-  .project-source > span {
-    font-size: 9px;
-  }
-  .project-card .sc-card-bottom {
-    font-size: 9px;
-    gap: 5px;
-  }
-  .project-card .sc-card-bottom > span:nth-child(2) {
-    margin-left: 0;
-  }
-  .project-open {
-    margin-left: auto;
   }
 }
 @media (max-width: 379px) {
