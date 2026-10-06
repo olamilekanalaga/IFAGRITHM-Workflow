@@ -1,4 +1,4 @@
-import Workspace from "@/components/workspace";
+import ScoutWorkspace from "@/components/scout-workspace";
 export default function Page() {
-  return <Workspace />;
+  return <ScoutWorkspace />;
 }

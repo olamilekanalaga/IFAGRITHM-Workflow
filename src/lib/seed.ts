@@ -404,6 +404,9 @@ for (const [id, title, owner, role, parent] of work) {
   records.find((r) => r.id === id)!.assigneeRole = role;
   link(parent, id, "requires work");
 }
+// Structured optional detail for the fictional demonstration; no real source claim.
+const novaObservation = records.find((r) => r.id === "nova-obs");
+if (novaObservation) novaObservation.behaviourDetail = "$100,000";
 export const seed: Memory = {
   version: 1,
   records,

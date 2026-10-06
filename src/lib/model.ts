@@ -26,6 +26,10 @@ export type RecordItem = {
   status: string;
   owner: string;
   createdAt: string;
+  website?: string;
+  observedAt?: string;
+  behaviourLabel?: string;
+  behaviourDetail?: string;
   category?: string;
   confidence?: string;
   source?: string;
