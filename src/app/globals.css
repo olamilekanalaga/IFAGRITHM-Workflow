@@ -1952,3 +1952,298 @@ legend {
     transform: none;
   }
 }
+.identity-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+  background: #101213;
+  color: #eeeee8;
+}
+.identity-card {
+  width: min(900px, 100%);
+  padding: 40px;
+  border: 1px solid #303436;
+  background: #171a1b;
+}
+.identity-card h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin: 24px 0;
+}
+.identity-card > p {
+  color: #a9afad;
+  line-height: 1.8;
+}
+.identity-card > small {
+  display: block;
+  color: #a9afad;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.identity-google {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  margin: 28px 0;
+  background: #faf9f6;
+  color: #20231f;
+  padding: 16px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.identity-google:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.identity-demo {
+  display: block;
+  margin-top: 28px;
+  font-size: 12px;
+}
+.identity-signout {
+  margin-top: 30px;
+  font-size: 12px;
+}
+.profile-heading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 24px 0;
+  min-width: 0;
+}
+.profile-heading > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.profile-heading .sc-logo img {
+  object-fit: cover;
+  width: 44px;
+  height: 44px;
+}
+.demo-banner {
+  padding: 12px 20px;
+  background: #352e18;
+  color: #f3daa0;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.8;
+}
+.demo-banner a {
+  color: inherit;
+}
+.int-subheading {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 30px 0 18px;
+}
+.int-list {
+  border-top: 1px solid var(--sc-line);
+  margin: 20px 0;
+}
+.int-list > p {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--sc-line);
+  line-height: 1.8;
+}
+.int-observation-row {
+  border-bottom: 1px solid var(--sc-line);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  align-items: flex-start;
+}
+.int-observation-row > button {
+  text-align: left;
+  max-width: 750px;
+}
+.int-observation-row strong {
+  display: block;
+  margin-bottom: 9px;
+}
+.int-observation-row span,
+.int-observation-row small {
+  display: block;
+  color: var(--sc-muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+.int-observation-row p {
+  color: var(--sc-muted);
+  line-height: 1.8;
+}
+.int-observation-row > div {
+  flex-shrink: 0;
+}
+.scout .author-link {
+  color: #c9a74b;
+  padding: 0;
+  text-align: left;
+  font-size: 12px;
+}
+.sc-light .author-link {
+  color: #785d13;
+}
+.int-sources {
+  margin: 20px 0;
+  display: grid;
+  gap: 18px;
+}
+.int-sources > div {
+  border: 1px solid var(--sc-line);
+  padding: 18px;
+  overflow-wrap: anywhere;
+}
+.int-sources small {
+  display: block;
+  margin-top: 10px;
+  color: var(--sc-muted);
+}
+.int-source-form {
+  display: flex;
+  gap: 15px;
+  align-items: end;
+  max-width: 900px;
+}
+.int-source-form label {
+  display: grid;
+  gap: 10px;
+  flex: 1;
+  font-size: 12px;
+}
+.company-autocomplete {
+  border: 1px solid var(--sc-line);
+  margin: 15px 0 24px;
+  max-height: 340px;
+  overflow: auto;
+}
+.company-autocomplete button {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 14px;
+  border-bottom: 1px solid var(--sc-line);
+  font-size: 12px;
+}
+.company-autocomplete span,
+.company-autocomplete small {
+  color: var(--sc-muted);
+}
+.company-autocomplete small {
+  margin-left: auto;
+  font-size: 10px;
+}
+.company-autocomplete button:hover {
+  background: var(--sc-panel);
+}
+.int-recent {
+  border-top: 1px solid var(--sc-line);
+  margin-top: 28px;
+  padding-top: 15px;
+}
+.int-recent h2 {
+  font-size: 15px;
+}
+.capture-author {
+  padding: 15px 0;
+  font-size: 12px;
+}
+.capture-author small {
+  color: var(--sc-muted);
+  font-size: 10px;
+}
+.worker-review {
+  border-bottom: 1px solid var(--sc-line);
+  padding: 20px 0;
+}
+.worker-review-controls {
+  display: flex;
+  gap: 15px;
+  align-items: end;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.worker-review-controls label {
+  display: grid;
+  gap: 9px;
+  font-size: 12px;
+  min-width: 0;
+  flex: 1;
+}
+.worker-review-controls input,
+.worker-review-controls select {
+  width: 100%;
+  max-width: 100%;
+}
+.int-confirm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  margin: 24px 0;
+}
+.scout button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.scout .sc-alert h2 {
+  font-size: 16px;
+}
+.identity-card details {
+  margin-top: 30px;
+}
+.identity-card summary {
+  cursor: pointer;
+}
+.identity-card .sc-form-grid label input {
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .identity-card {
+    padding: 25px 18px;
+  }
+  .identity-page {
+    padding: 20px 12px;
+  }
+  .int-observation-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .int-source-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .worker-review-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .profile-heading {
+    gap: 12px;
+  }
+  .company-autocomplete button {
+    gap: 8px;
+  }
+  .company-autocomplete small {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+  .sc-rail nav {
+    flex-wrap: wrap;
+  }
+  .sc-rail nav button {
+    flex: 1 1 30%;
+    font-size: 12px;
+  }
+}
+
+.identity-demo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 22px;
+  font-size: 12px;
+}

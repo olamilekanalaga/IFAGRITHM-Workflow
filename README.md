@@ -1,8 +1,8 @@
 # IFAGRITHM Workflow — Stage 1A
 
-Internal scout workspace. Two primary screens: **Observe** and **Overview / Directory**. An observation creates or reuses a company, records a behaviour and source, and updates company history. This is separate from the private research Terminal and public business website.
+An internal company-memory workspace for scouts and analysts. This project is separate from the public website and private research Terminal. The frozen scope is documented in [docs/STAGE-1A.md](docs/STAGE-1A.md).
 
-## Run locally
+## Local development
 
 Node.js 20+ and npm:
 
@@ -11,48 +11,61 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3010. Checks: `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`. Production locally: `npm run start`.
+Open http://localhost:3010. Checks: `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`. Run the production build with `npm run start`.
 
-## Functional scope
+## Routes
 
-- Capture an observation with a custom or existing behaviour, company/category, source URL, observed date and scout attribution.
-- Adaptive optional detail: Raised, Bounty, Prize pool, Grant pool, Creators observed, Partner, or free detail.
-- Reuse companies by selected ID, normalised domain, or unambiguous name. Existing company fields remain unchanged on capture.
-- Overview totals use actual records. Behaviour counts measure observations. Combined search/behaviour/category/status filters match the entire direct observation history, not just the latest observation.
-- Company detail lists chronological observations, sources, scouts and editable commercial status. “Not Approached” excludes recorded approach and downstream commercial statuses.
-- Dark/light mode and JSON memory export.
+- `/sign-in`: Google OAuth entry, or an honest configuration-needed state.
+- `/auth/callback`: exchange the OAuth code for a cookie-based verified session.
+- `/`: authenticated worker application. First-time users complete their profile; pending accounts cannot read workspace records.
+- `/admin`: approved Admin/Owner only, enforced on the server and in PostgreSQL.
+- `/api/workflow`: verified-session API; writes require same-origin requests and approved permissions.
+- `/demo/worker`, `/demo/admin`: clearly labelled read-only fictional previews. They do not authenticate users or bypass the real API.
+- `/demo`: earlier local capture prototype. Existing `ifagrithm-memory-v1` records remain exportable here; they are not silently imported or assigned to real accounts.
 
-## Persistence and demonstration data
+## What works once connected
 
-All seed companies and activities are fictional. Legacy sample notes have no verified external sources and are labelled accordingly. Captured URLs are attributed sources, not automatically verified facts. Observed behaviour does not establish a client problem.
+Google sign-in → automatically created Google profile/name/image/unique username → editable profile setup → admin approval → worker access.
 
-Browser localStorage uses the existing `ifagrithm-memory-v1` key and version. Research, evidence, strategies and other existing records remain intact underneath the simpler interface. Invalid saved memory blocks writes and can be exported for recovery. Export regularly: data is local to this browser and is not shared across devices. No authentication or server database exists.
+Workers can search/select canonical companies (name + domain + category), create a company while submitting an observation, use custom behaviour labels, attach multiple sources, view contributor history and My Work, and combine directory filters. Backend identity supplies author and timestamp. Changing a display name or username preserves previous contributions.
 
-## Architecture
+The database distinguishes companies, observations and submitters. Company names are not unique; normalized domains are unique. Same company/source warns before capture. Workers can view the existing observation or explicitly override. Different URLs can be added to one existing event without increasing behaviour counts.
 
-- `src/app/page.tsx`: primary application entry.
-- `src/components/scout-workspace.tsx`: Observe, directory, company history, theme and export.
-- `src/lib/scout.ts`: source/domain validation, atomic capture, direct relationships, filters and status logic.
-- `src/lib/model.ts`: additive relational record model; companies link to observations, observations to reusable behaviours and evidence.
-- `src/lib/seed.ts`: fictional demonstration memory.
-- `src/components/workspace.tsx` and `src/lib/operations.ts`: retained earlier operating-system implementation; not the primary UI.
-- `src/app/globals.css`: responsive styles, including scoped Stage 1A styles.
-- `public/brand-symbol-transparent.png`: existing IFAGRITHM brand symbol.
-- `tests/`: capture, relationships, deduplication, filtering and legacy operating-model tests.
+Admins can approve/suspend accounts, assign Scout/Analyst/Admin roles, correct categories/statuses, review activity, merge companies/observations with a reason, and softly remove bad submissions. A protected owner is deliberately bootstrapped, never awarded to the first registrant. Role requests are separate from actual permissions.
 
-Business operations are pure memory transformations. A future repository adapter can load/save the same records and relation edges in PostgreSQL/Supabase. Server-side validation, IDs, attribution and concurrency will then become authoritative.
+## Configuration and activation
 
-## Automatic company logos
+See [docs/AUTH-SETUP.md](docs/AUTH-SETUP.md) for exact Supabase, Google OAuth, database migration and initial owner setup. No live Supabase/Google credentials are included. When unconfigured, Google sign-in is disabled; only labelled demonstrations are available.
 
-Set `NEXT_PUBLIC_LOGO_DEV_TOKEN` to a Logo.dev **publishable** token, locally in `.env.local` or in Vercel project environment variables, then rebuild. Never place a secret token in a public environment variable. Domain-based logos load automatically for companies with a website. No uploads are required. Without a token, a domain, or on an image failure, initials appear. No logo provider credentials are bundled. Provider requests disclose the company domain to Logo.dev.
+Apply `supabase/migrations/202610060001_stage_1a.sql` to a dedicated Supabase project. Copy `.env.example` to `.env.local`, set the project URL and publishable key, configure Google in Supabase, and redeploy the linked Vercel project. After the intended owner signs in and completes setup, run the reviewed `supabase/bootstrap-owner.sql` with their verified full Google email.
 
-[Logo.dev documentation](https://www.logo.dev/docs) describes provider access and terms. Company websites are optional; existing companies without domains show initials. No fake logos or automatic news scraping are included.
+Private account emails remain in Supabase Auth, not in the worker-visible profile table. Never use a service-role key in `NEXT_PUBLIC_*`. The application does not need a service-role key.
+
+## Structure
+
+- `src/components/internal-workspace.tsx`: worker/admin navigation, company selection, capture, history and review forms.
+- `src/components/profile.tsx`, `sign-in.tsx`: profile onboarding, approval gates, avatars and sign-out.
+- `src/lib/identity.ts`: typed profiles/companies/observations/sources and duplicate/history helpers.
+- `src/lib/supabase/`: cookie-aware browser/server clients.
+- `src/middleware.ts`: verified session refresh for Next.js 15.
+- `src/app/api/workflow/route.ts`: restricted API actions. Authority stays with `auth.uid()` and protected PostgreSQL RPCs.
+- `supabase/migrations/`: four core tables, activity log, RLS, transactional capture/review and private image policies.
+- `tests/database.test.mjs`: executes the real migration against PGlite PostgreSQL with minimal auth/storage fixtures.
+- Legacy model/seed/scout files retain the earlier local prototype and company-memory relationships.
+- `public/brand-symbol-transparent.png`: existing IFAGRITHM brand asset.
+- `verification/`: screenshots and test reports.
+
+## Logos and profile images
+
+Optional `NEXT_PUBLIC_LOGO_DEV_TOKEN` enables [Logo.dev](https://www.logo.dev/docs) domain-based company logos. Use a publishable token, never a secret token. Initials appear when unconfigured or retrieval fails. Company domains are sent to the provider.
+
+Google profile images are used automatically when supplied. Profile uploads use a private Supabase bucket, signed reads, and authenticated user-specific paths. PNG/JPEG/WebP, maximum 2 MB.
 
 ## Deployment
 
-GitHub repository: https://github.com/olamilekanalaga/IFAGRITHM-Workflow
-Vercel project: `ifagrithm-workflow`. Push to its linked main branch to deploy; no custom domain changes are required. Set the public logo token in that project if desired, then redeploy. This internal MVP is not ready for sensitive shared team records without authentication and a server database.
+GitHub: https://github.com/olamilekanalaga/IFAGRITHM-Workflow
+Vercel project: `ifagrithm-workflow`. Push to linked `main` deploys the app. No custom domains or unrelated projects are modified.
 
-## Intentionally later
+## Intentional limits
 
-Stage 1B investigation, commercial workflow, content/delivery workspaces, shared persistence, permissions, source verification, bulk import, logo upload overrides, full-text/graph search and news ingestion. The current product deliberately stops at capture and company behavioural history.
+Live Google/Supabase integration needs configuration and verification with real test accounts. Database tests do not simulate the external Google provider. No Stage 1B, analysis workspace, content/delivery system, public publishing, AI duplicate resolution, automatic domain ownership verification, or unattended import is implemented. Entered domains are identity hints, not proof of ownership. One workspace is supported. Pagination/full-text search, reviewed legacy-data import and broader operational permissions can follow after Stage 1A validation.
