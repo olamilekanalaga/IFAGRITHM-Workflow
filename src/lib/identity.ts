@@ -1,3 +1,4 @@
+import type { InterventionFields } from "./intervention-model";
 export const roles = ["Research Scout", "Analyst", "Admin"] as const;
 export type Role = (typeof roles)[number];
 export type Profile = {
@@ -23,7 +24,7 @@ export type Company = {
   created_at: string;
   merged_into: string | null;
 };
-export type Observation = {
+export type Observation = InterventionFields & {
   id: string;
   company_id: string;
   behaviour: string;

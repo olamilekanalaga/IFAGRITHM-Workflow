@@ -406,7 +406,29 @@ for (const [id, title, owner, role, parent] of work) {
 }
 // Structured optional detail for the fictional demonstration; no real source claim.
 const novaObservation = records.find((r) => r.id === "nova-obs");
-if (novaObservation) novaObservation.behaviourDetail = "$100,000";
+if (novaObservation)
+  Object.assign(novaObservation, {
+    behaviourDetail: "$100,000",
+    resource: "$100,000",
+    desired_behaviour: "Trading",
+    intent_basis: "Inferred",
+    started_on: "2026-09-01",
+    intervention_status: "Active",
+  });
+for (const [id, goal, resource, status] of [
+  ["tide-obs", "LP deposits", "Tokens (amount not recorded)", "Ended"],
+  ["orbit-obs", "Community contributions", "", "Active"],
+  ["cedar-obs", "Market access", "", "Ended"],
+] as const) {
+  const observation = records.find((r) => r.id === id);
+  if (observation)
+    Object.assign(observation, {
+      desired_behaviour: goal,
+      resource,
+      intent_basis: "Inferred",
+      intervention_status: status,
+    });
+}
 export const seed: Memory = {
   version: 1,
   records,

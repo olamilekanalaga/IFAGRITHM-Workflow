@@ -2,6 +2,13 @@
 import { useEffect, useState, FormEvent } from "react";
 import Image from "next/image";
 import { AppearanceSwitcher } from "./appearance";
+import { InterventionReport } from "./intervention-report";
+import {
+  InterventionFieldsForm,
+  InterventionContext,
+} from "./intervention-fields";
+import { emptyIntervention } from "@/lib/intervention-model";
+import { memoryInterventions } from "@/lib/intervention-report";
 import {
   MetricCards,
   BehaviourCards,
@@ -55,6 +62,7 @@ function Logo({ company }: { company: RecordItem }) {
   );
 }
 const empty = {
+  ...emptyIntervention,
   companyId: "",
   company: "",
   website: "",
@@ -272,8 +280,8 @@ export default function ScoutWorkspace() {
               <p className="sc-eyebrow">STAGE 1A / CAPTURE</p>
               <h1>What did you observe?</h1>
               <p className="sc-intro">
-                Record the behaviour and its source. The company directory takes
-                care of itself.
+                Record the intervention and its source. The company directory
+                takes care of itself.
               </p>
               <div className="sc-flow">
                 NEWS <span>→</span> BEHAVIOUR <span>→</span> COMPANY{" "}
@@ -282,7 +290,7 @@ export default function ScoutWorkspace() {
               <form className="sc-form" onSubmit={submit}>
                 <div className="sc-form-grid">
                   <label>
-                    Behaviour
+                    Intervention
                     <input
                       required
                       list="sc-behaviours"
@@ -424,6 +432,10 @@ export default function ScoutWorkspace() {
                     </small>
                   </label>
                 </div>
+                <InterventionFieldsForm
+                  value={form}
+                  update={(context) => setForm({ ...form, ...context })}
+                />
                 <div className="sc-form-end">
                   <span>One observation. A growing company history.</span>
                   <button
@@ -516,21 +528,21 @@ export default function ScoutWorkspace() {
                 </button>
               </div>
               <div className="sc-section-title">
-                <h2>Observed behaviour</h2>
+                <h2>Observed interventions</h2>
                 <span>
                   {companyObservations(memory, company.id).length} observations
                 </span>
               </div>
               <p className="sc-muted">
-                Observed activity is evidence of behaviour; it does not
-                establish a business problem.
+                An observed intervention does not establish that the intended
+                behaviour occurred or that a business problem exists.
               </p>
               <div className="sc-table-wrap">
                 <table>
                   <thead>
                     <tr>
                       <th>Date</th>
-                      <th>Behaviour / observation</th>
+                      <th>Intervention / observation</th>
                       <th>Detail</th>
                       <th>Source / scout</th>
                     </tr>
@@ -550,6 +562,13 @@ export default function ScoutWorkspace() {
                         <td>
                           <strong>{behaviourOf(memory, o)}</strong>
                           <p>{o.title}</p>
+                          {(o.resource ||
+                            o.desired_behaviour ||
+                            o.started_on ||
+                            (o.intervention_status &&
+                              o.intervention_status !== "Unknown")) && (
+                            <InterventionContext observation={o} />
+                          )}
                         </td>
                         <td>
                           {o.behaviourDetail ? (
@@ -676,6 +695,28 @@ export default function ScoutWorkspace() {
                         ?.scrollIntoView({ block: "start" });
                     }}
                   />
+                  <InterventionReport
+                    rows={memoryInterventions(memory)}
+                    openCompany={(id) => {
+                      setSelected(id);
+                      window.scrollTo({ top: 0 });
+                    }}
+                    openObservation={(id) => {
+                      const row = memoryInterventions(memory).find(
+                        (r) => r.id === id,
+                      );
+                      if (row) {
+                        setSelected(row.companyId);
+                        window.scrollTo({ top: 0 });
+                      }
+                    }}
+                    filterDirectory={(label) => {
+                      setBf(label);
+                      document
+                        .getElementById("company-directory")
+                        ?.scrollIntoView({ block: "start" });
+                    }}
+                  />
                 </>
               )}
               <div className="sc-section-title" id="company-directory">
@@ -690,11 +731,11 @@ export default function ScoutWorkspace() {
                   onChange={(e) => setQ(e.target.value)}
                 />
                 <select
-                  aria-label="Behaviour filter"
+                  aria-label="Intervention filter"
                   value={bf}
                   onChange={(e) => setBf(e.target.value)}
                 >
-                  <option value="">All behaviours</option>
+                  <option value="">All interventions</option>
                   {labels.map((b) => (
                     <option key={b}>{b}</option>
                   ))}

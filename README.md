@@ -41,7 +41,7 @@ Use **Appearance** beside the profile to choose Ifagrithm, Paper or Terminal. If
 
 See [docs/AUTH-SETUP.md](docs/AUTH-SETUP.md) for exact Supabase, Google OAuth, database migration and initial owner setup. No live Supabase/Google credentials are included. When unconfigured, Google sign-in is disabled; only labelled demonstrations are available.
 
-Apply `supabase/migrations/202610060001_stage_1a.sql` to a dedicated Supabase project. Copy `.env.example` to `.env.local`, set the project URL and publishable key, configure Google in Supabase, and redeploy the linked Vercel project. After the intended owner signs in and completes setup, run the reviewed `supabase/bootstrap-owner.sql` with their verified full Google email.
+When activation is approved, apply `supabase/migrations/202610060001_stage_1a.sql` followed by `supabase/migrations/202610060002_intervention_report.sql` to a dedicated Supabase project. An existing Stage 1A schema needs only the second migration. Copy `.env.example` to `.env.local`, set the project URL and publishable key, configure Google in Supabase, and redeploy the linked Vercel project. After the intended owner signs in and completes setup, run the reviewed `supabase/bootstrap-owner.sql` with their verified full Google email.
 
 Private account emails remain in Supabase Auth, not in the worker-visible profile table. Never use a service-role key in `NEXT_PUBLIC_*`. The application does not need a service-role key.
 
@@ -73,3 +73,7 @@ Vercel project: `ifagrithm-workflow`. Push to linked `main` deploys the app. No 
 ## Intentional limits
 
 Live Google/Supabase integration needs configuration and verification with real test accounts. Database tests do not simulate the external Google provider. No Stage 1B, analysis workspace, content/delivery system, public publishing, AI duplicate resolution, automatic domain ownership verification, or unattended import is implemented. Entered domains are identity hints, not proof of ownership. One workspace is supported. Pagination/full-text search, reviewed legacy-data import and broader operational permissions can follow after Stage 1A validation.
+
+## Intervention Report
+
+Overview includes an observation-led report between the intervention cards and directory. Search and combine intervention, lifecycle and desired-behaviour filters; click a project to open its company record, an intervention to filter the directory, or a status to focus the report. Multiple evidence URLs remain one event. New capture context is optional and distinguishes a declared objective from an inference. Older saved records show unknown details rather than being rewritten. The prepared additive migration is documented in [AUTH-SETUP](docs/AUTH-SETUP.md); Supabase remains inactive in demonstrations. See [intervention report verification and screenshots](verification/intervention-report-verification.md) for checks and limitations.

@@ -3,6 +3,16 @@ import { useCallback, useEffect, useState, FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AppearanceSwitcher } from "./appearance";
+import { InterventionReport } from "./intervention-report";
+import {
+  InterventionFieldsForm,
+  InterventionContext,
+} from "./intervention-fields";
+import {
+  emptyIntervention,
+  normalizeIntervention,
+} from "@/lib/intervention-model";
+import { snapshotInterventions } from "@/lib/intervention-report";
 import { CompanyCard, CompanyLogo } from "./company-card";
 import { calendarDate, timestamp } from "@/lib/presentation";
 import {
@@ -36,6 +46,7 @@ import {
   canEnter,
 } from "./profile";
 const blank = {
+  ...emptyIntervention,
   companyId: "",
   company: "",
   website: "",
@@ -185,6 +196,7 @@ export default function InternalWorkspace({
       const result = await mutate({
         action: "observe",
         ...form,
+        ...normalizeIntervention(form),
         allowDuplicate: override,
       });
       if (result?.duplicate_id) {
@@ -466,6 +478,14 @@ export default function InternalWorkspace({
                   {metricLabel(observation.behaviour)}: {observation.detail}
                 </p>
               )}
+              <InterventionContext
+                observation={observation}
+                resource={
+                  snapshotInterventions(s).find(
+                    (row) => row.id === observation.id,
+                  )?.resource
+                }
+              />
               <h2 className="int-subheading">Evidence / sources</h2>
               <div className="int-sources">
                 {s.sources
@@ -560,7 +580,7 @@ export default function InternalWorkspace({
                 </div>
               </div>
               <div className="sc-detail-bar">
-                <span>Status: {company.status}</span>
+                <span>Company status: {company.status}</span>
                 <button
                   className="sc-primary"
                   onClick={() => {
@@ -572,7 +592,7 @@ export default function InternalWorkspace({
                   + Record observation this company
                 </button>
               </div>
-              <h2 className="int-subheading">Observed behaviour</h2>
+              <h2 className="int-subheading">Observed interventions</h2>
               {observationList(recentObservations(s, company.id))}
               {admin && (
                 <AdminCompany
@@ -594,7 +614,7 @@ export default function InternalWorkspace({
               <p className="sc-eyebrow">STAGE 1A / CAPTURE</p>
               <h1>What did you observe?</h1>
               <p className="sc-intro">
-                Find the company, label the behaviour, keep the evidence.
+                Find the company, label the intervention, keep the evidence.
               </p>
               <form className="sc-form" onSubmit={submit}>
                 <div className="sc-form-grid">
@@ -717,7 +737,7 @@ export default function InternalWorkspace({
                     </>
                   )}
                   <label>
-                    Behaviour
+                    Intervention
                     <input
                       required
                       list="int-behaviours"
@@ -792,6 +812,10 @@ export default function InternalWorkspace({
                     </small>
                   </div>
                 </div>
+                <InterventionFieldsForm
+                  value={form}
+                  update={(context) => setForm({ ...form, ...context })}
+                />
                 {prospectiveCompany && (
                   <div className="int-recent">
                     <h2>Recent observations for {form.company}</h2>
@@ -1042,6 +1066,27 @@ export default function InternalWorkspace({
                         ?.scrollIntoView({ block: "start" });
                     }}
                   />
+                  <InterventionReport
+                    rows={snapshotInterventions(s)}
+                    openCompany={(id) => {
+                      setCompanyId(id);
+                      setObservationId("");
+                      setPersonId("");
+                      window.scrollTo({ top: 0 });
+                    }}
+                    openObservation={(id) => {
+                      setObservationId(id);
+                      setCompanyId("");
+                      setPersonId("");
+                      window.scrollTo({ top: 0 });
+                    }}
+                    filterDirectory={(label) => {
+                      setBf(label);
+                      document
+                        .getElementById("company-directory")
+                        ?.scrollIntoView({ block: "start" });
+                    }}
+                  />
                 </>
               )}
               <div className="sc-section-title" id="company-directory">
@@ -1092,9 +1137,9 @@ export default function InternalWorkspace({
                 <div
                   className="directory-chip-row"
                   role="group"
-                  aria-label="Filter by behaviour"
+                  aria-label="Filter by intervention"
                 >
-                  <span className="directory-filter-label">BEHAVIOUR</span>
+                  <span className="directory-filter-label">INTERVENTION</span>
                   {["", ...labels].map((b) => {
                     const count = b
                       ? activeObservations.filter(
@@ -1132,8 +1177,8 @@ export default function InternalWorkspace({
                   ))}
                 </div>
                 <p className="directory-filter-note">
-                  Behaviour counts refer to observations. Multiple sources count
-                  as one event.
+                  Intervention counts refer to observations. Multiple sources
+                  count as one event.
                 </p>
               </div>
               <div className="sc-cards">

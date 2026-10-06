@@ -1,3 +1,4 @@
+import { normalizeIntervention } from "@/lib/intervention-model";
 import { NextRequest, NextResponse } from "next/server";
 import { serverClient } from "@/lib/supabase/server";
 import { configured } from "@/lib/supabase/config";
@@ -173,7 +174,8 @@ export async function POST(request: NextRequest) {
           403,
         );
       if (action === "observe") {
-        rpc = "submit_observation";
+        const context = normalizeIntervention(body);
+        rpc = "submit_intervention_observation";
         args = {
           _company_id: body.companyId ? uuid(body.companyId) : null,
           _company_name: text(body.company, 120),
@@ -185,6 +187,11 @@ export async function POST(request: NextRequest) {
           _observed_on: text(body.observedAt, 10),
           _source: text(body.source, 2048),
           _allow_duplicate: body.allowDuplicate === true,
+          _resource: context.resource,
+          _desired_behaviour: context.desiredBehaviour,
+          _intent_basis: context.intentBasis,
+          _started_on: context.startedOn || null,
+          _intervention_status: context.interventionStatus,
         };
       } else if (action === "source") {
         rpc = "add_observation_source";

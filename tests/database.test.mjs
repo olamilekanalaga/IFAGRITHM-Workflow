@@ -9,6 +9,12 @@ await db.exec(
 await db.exec(
   readFileSync("supabase/migrations/202610060001_stage_1a.sql", "utf8"),
 );
+await db.exec(
+  readFileSync(
+    "supabase/migrations/202610060002_intervention_report.sql",
+    "utf8",
+  ),
+);
 const owner = "00000000-0000-4000-8000-000000000001",
   scout = "00000000-0000-4000-8000-000000000002",
   pending = "00000000-0000-4000-8000-000000000003";
@@ -264,4 +270,98 @@ test("suspension immediately removes shared read and write permission", async ()
   });
   await assert.rejects(submit(scout), /Approved workspace access/);
 });
+
+async function contextSubmit({
+  source = "https://report.example/bounty",
+  basis = "Inferred",
+  status = "Active",
+  desired = "Development",
+  user = owner,
+} = {}) {
+  return asUser(user, async () => {
+    const r = await db.query(
+      "select public.submit_intervention_observation(null,'Context Project','context.example','Protocol','Bounty','Developer bounty','$20K','2026-10-06',$1,false,'$20K',$2,$3,'2026-09-01',$4) result",
+      [source, desired, basis, status],
+    );
+    return r.rows[0].result;
+  });
+}
+test("intervention capture persists provenance and lifecycle while reusing existing identity and source authority", async () => {
+  const r = await contextSubmit();
+  const o = (
+    await db.query("select * from public.observations where id=$1", [
+      r.observation_id,
+    ])
+  ).rows[0];
+  assert.equal(o.intent_basis, "Inferred");
+  assert.equal(o.intervention_status, "Active");
+  assert.equal(o.desired_behaviour, "Development");
+  assert.equal(o.submitted_by, owner);
+  assert.equal(o.started_on.toISOString().slice(0, 10), "2026-09-01");
+  assert.equal(
+    (
+      await db.query("select status from public.companies where id=$1", [
+        r.company_id,
+      ])
+    ).rows[0].status,
+    "Saved",
+  );
+  const duplicate = await contextSubmit({ basis: "Declared", status: "Ended" });
+  assert.equal(duplicate.duplicate_id, o.id);
+  assert.equal(
+    (
+      await db.query(
+        "select intent_basis,intervention_status from public.observations where id=$1",
+        [o.id],
+      )
+    ).rows[0].intervention_status,
+    "Active",
+  );
+});
+test("invalid intervention context cannot create partial records or bypass database constraints", async () => {
+  const before = (await db.query("select count(*) from public.observations"))
+    .rows[0].count;
+  await assert.rejects(
+    contextSubmit({
+      source: "https://report.example/invalid",
+      basis: "Unknown",
+    }),
+    /Declared or Inferred/,
+  );
+  await assert.rejects(
+    contextSubmit({
+      source: "https://report.example/status",
+      status: "Completed",
+    }),
+    /valid intervention status/,
+  );
+  assert.equal(
+    (await db.query("select count(*) from public.observations")).rows[0].count,
+    before,
+  );
+  await assert.rejects(
+    db.query(
+      "update public.observations set intent_basis='Unknown' where desired_behaviour<>''",
+    ),
+    /objective_requires_basis/,
+  );
+});
+test("new intervention RPC retains anonymous and suspended account restrictions", async () => {
+  await assert.rejects(
+    contextSubmit({ user: scout, source: "https://report.example/suspended" }),
+    /Approved workspace access/,
+  );
+  await db.exec("set role anon");
+  try {
+    await assert.rejects(
+      db.query(
+        "select public.submit_intervention_observation(null,'Hidden','hidden.example','Protocol','Bounty','A bounty','','2026-10-06','https://report.example/anonymous')",
+      ),
+      /permission denied/,
+    );
+  } finally {
+    await db.exec("reset role");
+  }
+});
+
 test.after(() => db.close());

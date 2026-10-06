@@ -97,10 +97,10 @@ export function BehaviourCards({
   choose: (label: string) => void;
 }) {
   return (
-    <section className="behaviour-section" aria-label="Behaviours observed">
+    <section className="behaviour-section" aria-label="Interventions observed">
       <div className="sc-section-title">
-        <h2>Behaviours observed</h2>
-        <span>Tap a behaviour to explore</span>
+        <h2>Interventions observed</h2>
+        <span>Tap an intervention to explore</span>
       </div>
       <div className="behaviour-cards">
         {items
@@ -213,7 +213,7 @@ export function ProjectCard({
       </span>
       <span className="company-card-domain">{domain}</span>
       <span className="company-card-observation">
-        <small>LATEST BEHAVIOUR</small>
+        <small>LATEST INTERVENTION</small>
         <strong>
           <span className="sc-dot" aria-hidden="true" />
           {behaviour || "No observations yet"}

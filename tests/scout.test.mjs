@@ -4,7 +4,7 @@ import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import ts from "typescript";
 mkdirSync(".test-build/scout", { recursive: true });
-for (const name of ["model", "scout"])
+for (const name of ["model", "scout", "intervention-model"])
   writeFileSync(
     `.test-build/scout/${name}.js`,
     ts.transpileModule(readFileSync(`src/lib/${name}.ts`, "utf8"), {

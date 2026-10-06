@@ -70,6 +70,11 @@ export function identityDemo(admin = false): Snapshot {
     observations: [
       {
         id: "demo-obs-1",
+        resource: "$20,000",
+        desired_behaviour: "Development / Content",
+        intent_basis: "Inferred",
+        started_on: "2026-08-01",
+        intervention_status: "Ended",
         company_id: "demo-across",
         behaviour: "Bounty",
         description: "Fictional example: a developer bounty announcement.",
@@ -83,6 +88,10 @@ export function identityDemo(admin = false): Snapshot {
       },
       {
         id: "demo-obs-2",
+        desired_behaviour: "Attention",
+        intent_basis: "Inferred",
+        started_on: "2026-09-01",
+        intervention_status: "Active",
         company_id: "demo-across",
         behaviour: "KOL Campaign",
         description: "Fictional example: eight creators shared a campaign.",
@@ -96,6 +105,10 @@ export function identityDemo(admin = false): Snapshot {
       },
       {
         id: "demo-obs-3",
+        desired_behaviour: "Investor commitments",
+        intent_basis: "Inferred",
+        started_on: "2026-09-15",
+        intervention_status: "Ended",
         company_id: "demo-nova-1",
         behaviour: "Fundraise",
         description: "Fictional example: a funding announcement.",

@@ -1,3 +1,4 @@
+import type { InterventionFields } from "./intervention-model";
 export const kinds = [
   "Company",
   "Person",
@@ -18,7 +19,7 @@ export const kinds = [
   "Problem",
 ] as const;
 export type Kind = (typeof kinds)[number];
-export type RecordItem = {
+export type RecordItem = InterventionFields & {
   id: string;
   kind: Kind;
   title: string;

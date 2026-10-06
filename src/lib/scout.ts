@@ -1,3 +1,8 @@
+import {
+  normalizeIntervention,
+  storedIntervention,
+  type InterventionInput,
+} from "./intervention-model";
 import { Memory, RecordItem } from "./model";
 export const behaviours = [
   "Bounty",
@@ -149,7 +154,7 @@ export function filterCompanies(
       );
     });
 }
-export type ObservationInput = {
+export type ObservationInput = Partial<InterventionInput> & {
   companyId?: string;
   company: string;
   website: string;
@@ -165,6 +170,7 @@ export function saveObservation(
   m: Memory,
   input: ObservationInput,
 ): { memory: Memory; companyId: string } {
+  const context = normalizeIntervention(input);
   const company = input.company.trim(),
     behaviour = input.behaviour.trim(),
     category = input.category.trim();
@@ -253,6 +259,7 @@ export function saveObservation(
     source,
     behaviourLabel: label.title,
     behaviourDetail: input.detail.trim(),
+    ...storedIntervention(context),
   };
   const evidence: RecordItem = {
     id: id(),
