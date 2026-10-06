@@ -8,7 +8,7 @@
     "start": "next start --port 3010",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/operations.test.mjs tests/scout.test.mjs tests/database.test.mjs tests/appearance.test.mjs"
+    "test": "node --test tests/operations.test.mjs tests/scout.test.mjs tests/database.test.mjs tests/appearance.test.mjs tests/presentation.test.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.10.3",

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AppearanceSwitcher } from "./appearance";
 import { CompanyCard, CompanyLogo } from "./company-card";
+import { calendarDate, timestamp } from "@/lib/presentation";
 import {
   Snapshot,
   Profile,
@@ -450,7 +451,7 @@ export default function InternalWorkspace({
               <p className="sc-intro">{observation.description}</p>
               <p>
                 Submitted by {profileLink(observation.submitted_by)} ·{" "}
-                {new Date(observation.created_at).toLocaleString()}
+                {timestamp(observation.created_at)}
               </p>
               {observation.detail && (
                 <p>
@@ -1144,7 +1145,7 @@ export default function InternalWorkspace({
                     {s.activity.map((a) => (
                       <p key={a.id}>
                         {a.event} · {profileLink(a.actor_id)} ·{" "}
-                        {new Date(a.created_at).toLocaleString()}
+                        {timestamp(a.created_at)}
                       </p>
                     ))}
                   </div>
@@ -1207,8 +1208,7 @@ function WorkerReview({
             overrides
           </small>
           <p className="sc-muted">
-            Last contribution:{" "}
-            {last ? new Date(last.created_at).toLocaleDateString() : "None"}
+            Last contribution: {last ? calendarDate(last.created_at) : "None"}
           </p>
         </div>
       </div>

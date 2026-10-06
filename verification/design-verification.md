@@ -7,9 +7,11 @@ Local production build tested with Chromium browser automation on 6 October 2026
 - Lint: passed.
 - TypeScript: passed.
 - Production build: passed, with the same routes as before this pass.
-- Tests: 30 passed, including all 26 existing tests and four preference-boundary tests.
+- Tests: 32 passed, including all 26 existing tests, four preference-boundary tests and two deterministic-date presentation tests.
 - Browser errors: none reported during the final local screen/interaction checks.
 - Frozen identity model, API, authentication callback, middleware, database migrations and permission tests: unchanged.
+
+Deployed-browser verification exposed the earlier locale-dependent Admin activity timestamp: Vercel rendered US/UTC text while the browser rendered British/local-time text. Activity and contribution timestamps now use explicit, deterministic UTC presentation, avoiding hydration mismatch without changing stored data.
 
 ## Responsive matrix
 

@@ -19,6 +19,7 @@ Every CompanyCard renders the same company, category, domain, latest behaviour, 
 - `src/app/themes.css`: central semantic tokens and shared Stage 1A layout. Tokens cover surfaces, ink, rules, accents, fonts, sizes, shadows, radii, spacing and textures. Theme selectors contain values; shared component selectors contain structure.
 - `src/components/company-card.tsx`: shared worker/admin card and stored-logo URL extension point, existing optional domain-provider support and initials fallback. No new identity field or paid integration is added.
 - `src/components/appearance.tsx`: root preference provider and non-modal switcher. Radio choices work with keyboard navigation. Escape closes and restores trigger focus; clicking outside or leaving the popover closes it.
+- `src/lib/presentation.ts`: deterministic UTC dates/timestamps, keeping Vercel server HTML and browser hydration consistent. Stored ISO timestamps remain unchanged.
 - `src/lib/appearance.ts`: versioned preference format, validation, legacy migration, colour-mode resolution and static pre-paint bootstrap.
 - `public/themes/paper-grain.svg`: locally generated monochrome texture.
 - `src/app/globals.css`: retained existing application styles; the theme stylesheet is loaded after it to keep this pass isolated from older prototypes.
