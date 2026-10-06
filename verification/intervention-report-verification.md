@@ -37,9 +37,9 @@ Capture has an optional, collapsible context section. An entered objective requi
 
 ## Responsive and accessibility checks
 
-Chromium automation exercised 1440, 1024, 768, 390 and 320 px under Ifagrithm, Paper and Terminal. **165 scene checks** covered Worker/Admin/local Overview, company/evidence records and optional capture. No page overflow, clipped table/cells or clipped report controls were found. Results: [responsive matrix](intervention-responsive-results.json).
+The initial report pass exercised 1440, 1024, 768, 390 and 320 px under Ifagrithm, Paper and Terminal. **165 scene checks** covered Worker/Admin/local Overview, company/evidence records and optional capture. Initial results: [responsive matrix](intervention-responsive-results.json). That pass used a stacked phone layout; the mobile table correction below supersedes it.
 
-Desktop retains a six-column semantic table. Phones display each row as a readable project record with two-column metadata and persistent existing bottom navigation. Long unbroken names/resources were stress-checked at 320 px.
+The report now remains a six-column semantic table at every width. On phones, only the report scrolls horizontally, and the Project column/header stay pinned while viewing later columns. A visible swipe hint and keyboard-focusable labelled region make scrolling discoverable. Existing bottom navigation remains accessible. Long values wrap within their table columns.
 
 The table has a descriptive caption and six scoped column headers; all search/filter controls have labels, links are native buttons, selection states use `aria-pressed`, and keyboard focus is visible. Computed report text/background contrast checks found minima of 7.43:1 (Ifagrithm), 4.86:1 (Paper) and 6.97:1 (Terminal), excluding decorative backgrounds. Existing reduced-motion styling remains in force. Capture labels now use a theme token instead of an inherited fixed pale colour, keeping Paper labels legible. These are browser accessibility basics, not a manual screen-reader audit.
 
@@ -53,7 +53,15 @@ The table has a descriptive caption and six scoped column headers; all search/fi
 | --- | --- | --- |
 | ![Paper phone](intervention-paper-mobile.png) | ![Ifagrithm phone](intervention-ifagrithm-mobile.png) | ![Terminal phone](intervention-terminal-mobile.png) |
 
+[Paper phone after horizontal scrolling](intervention-paper-mobile-scrolled.png)
+
 [Optional capture context on phone](intervention-capture-mobile.png)
+
+## Mobile table correction
+
+The earlier phone-only row/card layout has been removed. All six column headers and table rows remain visible in the table structure at every width. At 390/320 px the table scrolls within its own region, the Project column/header stay pinned, and Status is reachable at the right edge. Desktop retains the existing table layout.
+
+A fresh **45-check matrix** covers Worker/Admin/local report tables at 1440, 1024, 768, 390 and 320 px in all three themes: [table responsive results](intervention-table-responsive-results.json). All checks pass for real table semantics, headers, pinned columns, reachable final columns, button contents and page bounds. Horizontal overflow is intentional inside the report only. Native ArrowRight scrolling moved the focused region by 40 px with a visible focus outline. Existing filtering and company/evidence navigation continue to work. Lint, TypeScript, all 41 tests and the production build passed again for this correction.
 
 ## Intentional limits and next activation step
 

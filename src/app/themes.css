@@ -1473,8 +1473,18 @@ body {
 .report-table-wrap {
   border: 1px solid var(--rule-strong);
   border-radius: 16px;
-  overflow: hidden;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
   background: var(--surface-panel);
+}
+.report-table-wrap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.report-scroll-hint {
+  display: none;
+  color: var(--ink-muted);
+  font: 500 10px/1.6 var(--font-label);
 }
 .scout .report-table {
   min-width: 0;
@@ -1707,57 +1717,42 @@ body {
   .report-reset {
     font-size: 11px;
   }
-  .report-table,
-  .report-table tbody {
+  .report-scroll-hint {
     display: block;
+    margin: 0 0 10px;
   }
-  .report-table thead {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
+  .scout .report-table {
+    min-width: 880px;
   }
-  .report-table tr {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    padding: 20px 18px;
-    border-bottom: 1px solid var(--rule-strong);
+  .report-table th:nth-child(1) {
+    width: 17%;
   }
-  .report-table tr:last-child {
-    border: 0;
+  .report-table th:nth-child(2) {
+    width: 24%;
   }
-  .report-table td {
-    display: block;
-    padding: 0;
-    border: 0;
-    min-width: 0;
-    font-size: 12px;
+  .report-table th:nth-child(4) {
+    width: 18%;
   }
+  .report-table th:nth-child(5) {
+    width: 15%;
+  }
+  .report-table th:nth-child(6) {
+    width: 12%;
+  }
+  .report-table th:first-child,
   .report-table td:first-child {
-    grid-column: 1/-1;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--surface-panel);
+    box-shadow: 1px 0 0 var(--rule-strong);
   }
-  .report-table td::before {
-    content: attr(data-label);
-    display: block;
-    color: var(--ink-muted);
-    font: 500 9px/1.6 var(--font-label);
-    margin-bottom: 6px;
+  .report-table th:first-child {
+    z-index: 2;
+    background: var(--surface-raised);
   }
-  .report-table td:first-child::before {
-    display: none;
-  }
-  .report-table tr:hover td {
-    background: transparent;
-  }
-  .report-project {
-    font-size: 16px;
-  }
-  .report-table td:last-child {
-    align-self: end;
+  .report-table tr:hover td:first-child {
+    background: var(--surface-input);
   }
   .intervention-context {
     grid-template-columns: repeat(2, minmax(0, 1fr));

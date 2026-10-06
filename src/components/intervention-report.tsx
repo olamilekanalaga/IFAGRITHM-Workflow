@@ -96,7 +96,16 @@ export function InterventionReport({
           Reset report
         </button>
       </div>
-      <div className="report-table-wrap">
+      <p className="report-scroll-hint" id={`${id}-scroll`}>
+        Swipe across for all columns →
+      </p>
+      <div
+        className="report-table-wrap"
+        role="region"
+        aria-label="Intervention report table"
+        aria-describedby={`${id}-scroll`}
+        tabIndex={0}
+      >
         <table className="report-table" role="table">
           <caption className="report-caption">
             Recorded interventions, resources, desired behaviours, start dates
